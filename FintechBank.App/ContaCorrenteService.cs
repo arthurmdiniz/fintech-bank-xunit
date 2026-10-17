@@ -1,6 +1,6 @@
 namespace FintechBank.App;
 
-public class ContaCorrentService
+public class ContaCorrenteService
 {
     public decimal CalcularTaxaManutencao(decimal saldo, bool clienteEspecial)
     {

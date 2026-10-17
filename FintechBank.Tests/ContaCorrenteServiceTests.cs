@@ -22,4 +22,21 @@ public class ContaCorrenteServiceTests
 
         Assert.Equal((decimal)taxaEsperada, resultado);
     }
+
+    [Theory]
+    [InlineData(1000.00, 500.00, 1200.00, true)]
+    [InlineData(1000.00, 500.00, 1600.00, false)]
+    public void PodeRealizarSaque_DeveRetornarResultadoEsperado(
+        double saldo,
+        double limiteChequeEspecial,
+        double valorSaque,
+        bool resultadoEsperado)
+    {
+        var resultado = _service.PodeRealizarSaque(
+            (decimal)saldo,
+            (decimal)limiteChequeEspecial,
+            (decimal)valorSaque);
+
+        Assert.Equal(resultadoEsperado, resultado);
+    }
 }
