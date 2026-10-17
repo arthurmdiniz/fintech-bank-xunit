@@ -12,16 +12,16 @@ public class EmprestimoServiceTests
     [InlineData(10000.00, 10, 800, 1050.00)]
     [InlineData(10000.00, 10, 600, 1120.00)]
     [InlineData(10000.00, 10, 400, 1200.00)]
-    public void CalcularParcela_DeveAplicarJurosConformeScore(
+    public void CalcularValorParcela_DeveAplicarJurosConformeScore(
         double valorEmprestimo,
         int quantidadeParcelas,
         int score,
         double parcelaEsperada)
     {
-        var resultado = _service.CalcularParcela(
-            valorEmprestimo, quantidadeParcelas, score);
+        var resultado = _service.CalcularValorParcela(
+            (decimal)valorEmprestimo, quantidadeParcelas, score);
 
-        Assert.Equal(parcelaEsperada, resultado, 2);
+        Assert.Equal((decimal)parcelaEsperada, resultado);
     }
 
     [Theory]
@@ -33,7 +33,7 @@ public class EmprestimoServiceTests
         bool aprovadoEsperado)
     {
         var resultado = _service.AprovarEmprestimo(
-            rendaMensal, valorParcela);
+            (decimal)rendaMensal, (decimal)valorParcela);
 
         Assert.Equal(aprovadoEsperado, resultado);
     }
